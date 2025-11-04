@@ -78,4 +78,3 @@ CREATE INDEX idx_locker_positions_owner ON locker_positions(owner_address);
 CREATE INDEX idx_locker_positions_lock_id ON locker_positions(lock_id);
 CREATE INDEX idx_locker_positions_period ON locker_positions(lock_period);
 CREATE INDEX idx_locker_positions_status ON locker_positions(status);
-CREATE INDEX idx_locker_positions_expired ON locker_positions(is_expired);

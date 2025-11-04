@@ -10,6 +10,7 @@ const configSchema = z.object({
   PAIR_PACKAGE_ID: z.string(),
   FARM_PACKAGE_ID: z.string(),
   LOCKER_PACKAGE_ID: z.string(),
+  EMISSION_CONTROLLER_ADDRESS: z.string(),
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
 });
 

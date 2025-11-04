@@ -80,7 +80,6 @@ CREATE TABLE locker_positions (
     last_sui_epoch_claimed INTEGER DEFAULT 0,
     
     status position_status DEFAULT 'active',
-    is_expired BOOLEAN GENERATED ALWAYS AS (lock_end_timestamp < NOW()) STORED,
     
     created_at TIMESTAMPTZ NOT NULL,
     closed_at TIMESTAMPTZ,
