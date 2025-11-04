@@ -1,0 +1,23 @@
+FROM oven/bun:1 as base
+WORKDIR /app
+
+# Install dependencies
+COPY package.json bun.lock* ./
+COPY packages/indexer/package.json ./packages/indexer/
+COPY packages/shared/package.json ./packages/shared/
+RUN bun install
+
+# Copy source
+COPY packages/indexer ./packages/indexer
+COPY packages/shared ./packages/shared
+
+# Build
+RUN cd packages/indexer && bun build src/main.ts --outdir dist --target bun
+
+# Production
+FROM oven/bun:1-slim
+WORKDIR /app
+COPY --from=base /app/packages/indexer/dist ./dist
+COPY --from=base /app/node_modules ./node_modules
+
+CMD ["bun", "dist/main.js"]
